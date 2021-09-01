@@ -30,6 +30,8 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
+    external_links:
+      - collect
 
   alertmanager:
     image: prom/alertmanager:v0.22.2

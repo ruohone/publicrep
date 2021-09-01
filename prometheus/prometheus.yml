@@ -28,26 +28,24 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: 'ionia'
+  - job_name: 'collect1'
     scrape_interval: 5s
     honor_labels: true
     static_configs:
-      - targets: ['172.16.103.206:8802']
+      - targets: ['collect:8802']
         labels: {
-              "job": "mytest",
-              "app": "shorturl-api",
-              "env": "dev",
-              "instance": "172.16.103.206:8802"
+              "app": "ionia",
+              "env": "test"
           }
 
-  - job_name: 'admin'
+  - job_name: 'collect2'
     scrape_interval: 5s
     honor_labels: true
     static_configs:
-      - targets: ['172.16.103.206:8803']
+      - targets: ['docker_collect:8802']
         labels: {
-              "env": "dev",
-              "instance": "172.16.103.206:8803"
+              "app": "ionia",
+              "env": "test"
           }
 
 alerting:
