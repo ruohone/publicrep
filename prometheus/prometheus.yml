@@ -18,31 +18,26 @@ scrape_configs:
     static_configs:
       - targets: ['nodeexporter:9100']
 
-  - job_name: 'cadvisor'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['cadvisor:8080']
-
   - job_name: 'prometheus'
     scrape_interval: 10s
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: 'collect1'
+  - job_name: 'collect'
     scrape_interval: 5s
     honor_labels: true
     static_configs:
-      - targets: ['collect:8802']
+      - targets: ['192.168.0.50:8801']
         labels: {
               "app": "ionia",
               "env": "test"
           }
 
-  - job_name: 'collect2'
+  - job_name: 'admin'
     scrape_interval: 5s
     honor_labels: true
     static_configs:
-      - targets: ['docker_collect:8802']
+      - targets: ['192.168.0.50:8802']
         labels: {
               "app": "ionia",
               "env": "test"
@@ -52,7 +47,7 @@ alerting:
   alertmanagers:
   - scheme: http
     static_configs:
-    - targets: 
+    - targets:
       - 'alertmanager:9093'
 
 #  - job_name: 'nginx'
